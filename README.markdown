@@ -20,6 +20,12 @@ Updates
 Haven't tested them, but in theory they're set up.
 
 
+Credits
+-------
+
+I completely ripped off the little "Instapaper: Saving" box that shows up when using the Instapaper bookmarklet. If that's OK: thanks! If not: drop me a line and I'll ditch it.
+
+
 License
 -------
 
