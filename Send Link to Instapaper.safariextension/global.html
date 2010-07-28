@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="jquery.js"></script>
+    <script>
+    var addToInstapaperURL = "https://www.instapaper.com/api/add";
+    var menuItemIdentifier = "sendToInstapaper";
+    var app = safari.application;
+    var settings = safari.extension.settings;
+    var savingStatus = "savingStatus";
+    
+    // The injected script blanks userInfo unless it's a link with an http[s]
+    // URL, so validation for the context menu item is cake.
+    function validateSendToInstapaper(event) {
+      if (event.command !== menuItemIdentifier)
+        return;
+      event.target.disabled = !(settings.username && event.userInfo);
+    }
+    app.addEventListener("validate", validateSendToInstapaper, false);
+    
+    // Post the link's URL to Instapaper.
+    function sendToInstapaper(event) {
+      if (event.command !== menuItemIdentifier)
+        return;
+      var page = safari.application.activeBrowserWindow.activeTab.page;
+      page.dispatchMessage(savingStatus, "saving");
+      jQuery.ajax({
+        'type': "POST",
+        'url': addToInstapaperURL,
+        'data': {
+          'url': event.userInfo,
+          // I couldn't get Basic auth to work. Sorry Marco.
+          'username': safari.extension.settings.username,
+          'password': safari.extension.secureSettings.password
+        },
+        // jQuery manages to get the request through, but I can't seem to get 
+        // the request's status or data, so I can't report 403 or 500 errors.
+        'success': function(data, textStatus, xhr) {
+          page.dispatchMessage(savingStatus, "saved");
+        },
+        'error': function(xhr, textStatus, errorThrown) {
+          page.dispatchMessage(savingStatus, "failed");
+        }
+      });
+    }
+    app.addEventListener("command", sendToInstapaper, false);
+    </script>
+  </head>
+</html>

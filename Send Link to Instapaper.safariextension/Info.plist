@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Author</key>
+	<string>Nolan Waite</string>
+	<key>CFBundleDisplayName</key>
+	<string>Send Link to Instapaper</string>
+	<key>CFBundleIdentifier</key>
+	<string>ca.nolanw.SendLinkToInstapaper</string>
+	<key>CFBundleInfoDictionaryVersion</key>
+	<string>6.0</string>
+	<key>CFBundleShortVersionString</key>
+	<string>1.0</string>
+	<key>CFBundleVersion</key>
+	<string>1</string>
+	<key>Chrome</key>
+	<dict>
+		<key>Context Menu Items</key>
+		<array>
+			<dict>
+				<key>Identifier</key>
+				<string>sendToInstapaper</string>
+				<key>Title</key>
+				<string>Send to Instapaper</string>
+			</dict>
+		</array>
+		<key>Global Page</key>
+		<string>global.html</string>
+	</dict>
+	<key>Content</key>
+	<dict>
+		<key>Scripts</key>
+		<dict>
+			<key>Start</key>
+			<array>
+				<string>addURLToUserInfo.js</string>
+				<string>savingStatus.js</string>
+			</array>
+		</dict>
+	</dict>
+	<key>Description</key>
+	<string>Adds 'Send to Instapaper' item to context menus for links.</string>
+	<key>ExtensionInfoDictionaryVersion</key>
+	<string>1.0</string>
+	<key>Permissions</key>
+	<dict>
+		<key>Website Access</key>
+		<dict>
+			<key>Level</key>
+			<string>All</string>
+		</dict>
+	</dict>
+	<key>Update Manifest URL</key>
+	<string>http://nolanw.github.com/SendLinkToInstapaper/updatemanifest.plist</string>
+	<key>Website</key>
+	<string>http://github.com/nolanw/SendLinkToInstapaper</string>
+</dict>
+</plist>
